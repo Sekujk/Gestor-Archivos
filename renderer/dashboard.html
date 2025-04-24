@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <link rel="stylesheet" href="style_dash.css" />
+</head>
+<body class="dashboard">
+  <header>
+    <h1>Panel de Usuario</h1>
+    <nav>
+      <a href="perfil.html">Perfil</a>
+      <button id="logout">Cerrar sesión</button>
+    </nav>
+  </header>
+  <main>
+    <h1>Dashboard</h1>
+    <div class="dashboard-sections">
+      <section>
+        <h2>Bienvenido</h2>
+        <p id="user-email">Cargando correo...</p>
+      </section>
+      
+      <section>
+        <h2>Subir archivo</h2>
+        <input type="file" id="archivo">
+        <button id="subir">Subir</button>
+      </section>
+
+      <section>
+        <h2>Mis Archivos</h2>
+        <input type="text" id="filtro-archivos" placeholder="Buscar archivo por nombre">
+        <ul id="lista-archivos"></ul>
+      </section>
+
+      <section>
+        <h2>Contactos</h2>
+        <input type="email" id="nuevo-contacto" placeholder="Correo del contacto">
+        <button id="agregar-contacto">Agregar contacto</button>
+        <ul id="lista-contactos"></ul>
+      </section>
+
+      <section>
+        <h2>Archivos compartidos conmigo</h2>
+        <input type="text" id="filtro-compartidos" placeholder="Filtrar por usuario que compartió">
+        <ul id="archivos-compartidos"></ul>
+      </section>
+    </div>
+  </main>
+  
+  <!-- Modal para visualizar archivos -->
+  <div id="modal-overlay" class="modal-overlay">
+    <div class="modal-content">
+      <button class="modal-close" id="modal-close">✕</button>
+      <h3 class="modal-file-name" id="modal-file-name"></h3>
+      <div class="modal-file-viewer" id="modal-file-viewer"></div>
+    </div>
+  </div>
+  
+  <div id="toast"></div>
+  <script type="module" src="dashboard.js"></script>
+</body>
+</html>

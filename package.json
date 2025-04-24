@@ -1,0 +1,66 @@
+{
+  "name": "gestorarchivos",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "cross-env NODE_ENV=development electron .",
+    "build": "electron-builder",
+    "publish": "electron-builder --publish always"
+  },
+  "build": {
+    "appId": "com.miempresa.gestorarchivos",
+    "productName": "GestorArchivos",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "**/*",
+      "!dist",
+      "!node_modules/*/{CHANGELOG.md,README.md,README,readme.md,readme}",
+      "!**/*.map"
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "build/icon.ico"
+    },
+    "mac": {
+      "target": "dmg",
+      "icon": "build/icon.icns"
+    },
+    "linux": {
+      "target": "AppImage",
+      "icon": "build/icon.png"
+    },
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "Sekujk",
+        "repo": "Gestor-Archivos"
+      }
+    ],
+    "extraResources": [
+      ".env"
+    ]
+  },
+  "keywords": [
+    "electron",
+    "supabase",
+    "gestor",
+    "archivos"
+  ],
+  "author": "Sekujk",
+  "license": "ISC",
+  "description": "Gestor de archivos con autenticación y sincronización en la nube",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.39.7",
+    "dotenv": "^16.4.1",
+    "electron-log": "^5.0.1",
+    "electron-updater": "^6.1.7"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "electron": "^35.2.0",
+    "electron-builder": "^26.0.12"
+  }
+}
