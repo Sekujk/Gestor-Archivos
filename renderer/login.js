@@ -1,7 +1,11 @@
 // login.js - usando ESM
 import { appManager, getSupabase } from '../supabase/client.js';
+import initializeToast, { createToast } from './toast.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
+  // Inicializar el sistema de toast
+  initializeToast();
+  
   // Primero asegurarse de que el cliente de Supabase esté inicializado
   try {
     await appManager.initialize();
@@ -38,7 +42,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   if (forgotPasswordLink) {
     forgotPasswordLink.addEventListener('click', (event) => {
       event.preventDefault();
-      // Mostrar modal o redireccionar a la página de recuperación de contraseña
+      // Mostrar modal de recuperación de contraseña
       showResetPasswordModal();
     });
   }
@@ -51,6 +55,12 @@ document.addEventListener('DOMContentLoaded', async () => {
       return showToast('Por favor, completa todos los campos.', 'error');
     }
 
+    // Validar formato de email
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(email)) {
+      return showToast('Por favor, introduce un email válido.', 'error');
+    }
+
     // Mostrar loader
     loginBtn.disabled = true;
     loginBtn.innerHTML = '<span class="spinner-small"></span> Iniciando sesión...';
@@ -61,16 +71,23 @@ document.addEventListener('DOMContentLoaded', async () => {
       
       const { data, error } = await supabase.auth.signInWithPassword({ email, password });
       
-      if (error) throw error;
+      if (error) {
+        // Personalizar mensajes de error
+        if (error.message.includes('Invalid login credentials')) {
+          throw new Error('Credenciales inválidas. Verifica tu email y contraseña.');
+        } else {
+          throw error;
+        }
+      }
       
-      showToast('Sesión iniciada correctamente', 'success');
+      showToast('Inicio de sesión exitoso. ¡Bienvenido/a!', 'success');
       
       // Redireccionar a dashboard
       setTimeout(() => {
         window.location.href = 'dashboard.html';
       }, 1000);
     } catch (error) {
-      showToast(`Error: ${error.message}`, 'error');
+      showToast(error.message, 'error');
     } finally {
       // Restaurar botón
       loginBtn.disabled = false;
@@ -78,84 +95,118 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   }
 
+  // Función mejorada para mostrar el modal de recuperación de contraseña
   function showResetPasswordModal() {
-    // Implementar lógica para mostrar modal de recuperación de contraseña
+    // Crear el modal principal
     const modal = document.createElement('div');
-    modal.classList.add('modal');
+    modal.className = 'modal';
+    
+    // Crear el contenido del modal
     modal.innerHTML = `
       <div class="modal-content">
-        <span class="close">&times;</span>
+        <button class="close" aria-label="Cerrar">&times;</button>
         <h2>Recuperar contraseña</h2>
-        <p>Ingresa tu correo electrónico para recibir instrucciones de recuperación.</p>
+        <p>Ingresa tu correo electrónico y te enviaremos un enlace para restablecer tu contraseña.</p>
         <form id="resetPasswordForm">
-          <input type="email" id="resetEmail" placeholder="Correo electrónico" required>
-          <button type="submit">Enviar</button>
+          <label for="resetEmail">Correo electrónico</label>
+          <input type="email" id="resetEmail" placeholder="Tu correo electrónico" required>
+          <button type="submit" id="resetSubmitBtn" class="btn btn-primary">Enviar instrucciones</button>
         </form>
+        <div id="resetSuccessMessage" style="display: none;" class="success-message">
+          <p>¡Enlace enviado! Revisa tu correo electrónico y sigue las instrucciones para restablecer tu contraseña.</p>
+        </div>
       </div>
     `;
     
+    // Añadir el modal al body
     document.body.appendChild(modal);
     
-    // Mostrar modal
+    // Mostrar el modal con una pequeña demora para permitir la transición
     setTimeout(() => {
       modal.classList.add('show');
     }, 10);
     
-    // Cerrar modal
+    // Obtener referencias a los elementos del modal
     const closeBtn = modal.querySelector('.close');
-    closeBtn.addEventListener('click', () => {
+    const resetForm = modal.querySelector('#resetPasswordForm');
+    const resetEmailInput = modal.querySelector('#resetEmail');
+    const resetSubmitBtn = modal.querySelector('#resetSubmitBtn');
+    const successMessage = modal.querySelector('#resetSuccessMessage');
+    
+    // Función para cerrar el modal
+    const closeModal = () => {
       modal.classList.remove('show');
-      setTimeout(() => modal.remove(), 300);
+      setTimeout(() => {
+        modal.remove();
+      }, 300); // Esperar a que termine la transición
+    };
+    
+    // Evento para cerrar el modal con el botón X
+    closeBtn.addEventListener('click', closeModal);
+    
+    // Cerrar el modal si se hace clic fuera del contenido del modal (en el fondo oscuro)
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        closeModal();
+      }
     });
     
-    // Manejar envío del formulario
-    const resetForm = modal.querySelector('#resetPasswordForm');
+    // Manejar el envío del formulario de recuperación
     resetForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       
-      const resetEmail = modal.querySelector('#resetEmail').value.trim();
+      const email = resetEmailInput.value.trim();
       
-      if (!resetEmail) {
+      // Validar el email
+      if (!email) {
         return showToast('Por favor, ingresa tu correo electrónico.', 'error');
       }
+      
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailPattern.test(email)) {
+        return showToast('Por favor, introduce un email válido.', 'error');
+      }
+      
+      // Cambiar el estado del botón a cargando
+      resetSubmitBtn.disabled = true;
+      resetSubmitBtn.innerHTML = '<span class="spinner-small"></span> Enviando...';
       
       try {
         const supabase = getSupabase();
         if (!supabase) throw new Error('Cliente de Supabase no inicializado');
         
-        const { error } = await supabase.auth.resetPasswordForEmail(resetEmail);
+        // Usar el método de Supabase para enviar el correo de recuperación
+        const { error } = await supabase.auth.resetPasswordForEmail(email, {
+          redirectTo: window.location.origin + '/reset-password.html'
+        });
         
         if (error) throw error;
         
-        showToast('Se han enviado instrucciones a tu correo electrónico.', 'success');
-        modal.classList.remove('show');
-        setTimeout(() => modal.remove(), 300);
+        // Mostrar mensaje de éxito
+        resetForm.style.display = 'none';
+        successMessage.style.display = 'block';
+        
+        // Cerrar automáticamente después de un tiempo
+        setTimeout(() => {
+          closeModal();
+        }, 5000);
+        
       } catch (error) {
-        showToast(`Error: ${error.message}`, 'error');
+        console.error('Error al solicitar restablecimiento:', error);
+        
+        // Personalizar mensaje de error
+        let errorMessage = 'Error al enviar el enlace de recuperación.';
+        
+        if (error.message.includes('Email not found')) {
+          errorMessage = 'No existe una cuenta con este correo electrónico.';
+        }
+        
+        showToast(errorMessage, 'error');
+        
+        // Restaurar el botón
+        resetSubmitBtn.disabled = false;
+        resetSubmitBtn.textContent = 'Enviar instrucciones';
       }
     });
-  }
-
-  // Función para mostrar toast
-  function showToast(message, type = 'info') {
-    if (window.showToast) {
-      window.showToast(message, type);
-    } else {
-      const toast = document.createElement('div');
-      toast.classList.add('toast', `toast-${type}`);
-      toast.textContent = message;
-      document.body.appendChild(toast);
-      
-      // Animar entrada
-      setTimeout(() => {
-        toast.classList.add('show');
-      }, 10);
-      
-      // Eliminar después de 3 segundos
-      setTimeout(() => {
-        toast.classList.remove('show');
-        setTimeout(() => toast.remove(), 300);
-      }, 3000);
-    }
   }
 });

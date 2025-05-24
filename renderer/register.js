@@ -1,7 +1,11 @@
 // register.js - usando ESM
 import { appManager, getSupabase } from '../supabase/client.js';
+import initializeToast, { createToast } from './toast.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
+  // Inicializar el sistema de toast
+  initializeToast();
+  
   // Primero asegurarse de que el cliente de Supabase esté inicializado
   try {
     await appManager.initialize();
@@ -45,6 +49,17 @@ document.addEventListener('DOMContentLoaded', async () => {
       return showToast('Por favor, completa todos los campos.', 'error');
     }
 
+    // Validar formato de email
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(email)) {
+      return showToast('Por favor, introduce un email válido.', 'error');
+    }
+
+    // Validar contraseña (mínimo 6 caracteres)
+    if (password.length < 6) {
+      return showToast('La contraseña debe tener al menos 6 caracteres.', 'error');
+    }
+
     // Mostrar loader
     registerButton.disabled = true;
     registerButton.innerHTML = '<span class="spinner-small"></span> Registrando...';
@@ -64,44 +79,28 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
       });
 
-      if (error) throw error;
+      if (error) {
+        // Personalizar mensajes de error comunes
+        if (error.message.includes('already registered')) {
+          throw new Error('Este correo electrónico ya está registrado. Por favor, inicia sesión.');
+        } else {
+          throw error;
+        }
+      }
 
       // Mostrar mensaje de éxito
-      showToast('Cuenta registrada exitosamente. Revisa tu email para verificar tu cuenta.', 'success');
+      showToast('¡Registro exitoso! Revisa tu email para verificar tu cuenta.', 'success');
       
       // Redireccionar a login después de un breve retraso
       setTimeout(() => {
         window.location.href = 'login.html';
       }, 2000);
     } catch (error) {
-      showToast(`Error al registrar: ${error.message}`, 'error');
+      showToast(error.message, 'error');
     } finally {
       // Restaurar botón
       registerButton.disabled = false;
-      registerButton.textContent = 'Registrarse';
-    }
-  }
-
-  // Función para mostrar toast
-  function showToast(message, type = 'info') {
-    if (window.showToast) {
-      window.showToast(message, type);
-    } else {
-      const toast = document.createElement('div');
-      toast.classList.add('toast', `toast-${type}`);
-      toast.textContent = message;
-      document.body.appendChild(toast);
-      
-      // Animar entrada
-      setTimeout(() => {
-        toast.classList.add('show');
-      }, 10);
-      
-      // Eliminar después de 3 segundos
-      setTimeout(() => {
-        toast.classList.remove('show');
-        setTimeout(() => toast.remove(), 300);
-      }, 3000);
+      registerButton.textContent = 'Registrar cuenta';
     }
   }
 });

@@ -34,10 +34,18 @@ function createWindow() {
       nodeIntegration: false // Para mayor seguridad
     },
     autoHideMenuBar: true,
-    frame: true
+    frame: true,
+    show: false // Inicialmente ocultamos la ventana hasta que esté lista
   });
 
+  // Cargamos el archivo HTML
   mainWindow.loadFile('renderer/index.html');
+
+  // Una vez que la ventana esté lista, la maximizamos y mostramos
+  mainWindow.once('ready-to-show', () => {
+    mainWindow.maximize();
+    mainWindow.show();
+  });
 
   // Opcional: abre DevTools en desarrollo
   if (process.env.NODE_ENV === 'development') {

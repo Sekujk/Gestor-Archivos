@@ -1,4 +1,3 @@
-
 // uiHelpers.js
 export function crearBoton(texto, handler) {
     const btn = document.createElement('button');
