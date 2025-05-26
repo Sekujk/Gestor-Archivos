@@ -1,0 +1,72 @@
+/* ===== CARDS/CONTAINERS ===== */
+
+/* Contenedor principal de login/register */
+.login-container {
+  background-color: var(--card-bg);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--box-shadow-lg);
+  width: 100%;
+  max-width: 400px;
+  padding: var(--spacing-xxxl);
+  animation: fadeIn 0.5s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Decoración superior del contenedor */
+.login-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary-color), #6366f1);
+}
+
+/* Card genérica */
+.card {
+  background-color: var(--card-bg);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--box-shadow);
+  padding: var(--spacing-xl);
+  margin-bottom: var(--spacing-lg);
+  border: 1px solid var(--border-color);
+}
+
+.card-header {
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+}
+
+.card-body {
+  padding: var(--spacing-md) 0;
+}
+
+.card-footer {
+  border-top: 1px solid var(--border-color);
+  padding-top: var(--spacing-md);
+  margin-top: var(--spacing-lg);
+}
+
+/* Variantes de cards */
+.card-primary {
+  border-left: 4px solid var(--primary-color);
+}
+
+.card-success {
+  border-left: 4px solid var(--success-color);
+}
+
+.card-danger {
+  border-left: 4px solid var(--danger-color);
+}
+
+.card-warning {
+  border-left: 4px solid var(--warning-color);
+}
+
+.card-info {
+  border-left: 4px solid var(--info-color);
+}

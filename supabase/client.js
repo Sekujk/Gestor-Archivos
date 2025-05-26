@@ -1,7 +1,4 @@
-// client.js - usando módulos pero sin importar directamente Supabase
-// No importamos desde @supabase/supabase-js ya que causará error en el navegador
 
-// Configuración inicial de Supabase (se inicializará más tarde)
 let supabase = null;
 
 // Clase para gestionar el estado de la aplicación
@@ -169,6 +166,11 @@ const appManager = new AppManager();
 
 // Exportaciones para uso en otros archivos
 export { appManager };
-export const getSupabase = () => supabase;
+export const getSupabase = () => {
+  if (!supabase) {
+    throw new Error('Supabase no ha sido inicializado. Llama a appManager.initialize() primero.');
+  }
+  return supabase;
+};
 // Exportamos supabase directamente para mayor compatibilidad con tus archivos existentes
 export { supabase };

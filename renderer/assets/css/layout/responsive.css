@@ -1,0 +1,161 @@
+/* ===== DISEÑO RESPONSIVO ===== */
+
+/* Mobile First - Estilos para móviles (hasta 480px) */
+@media (max-width: 480px) {
+  body {
+    padding: var(--spacing-md);
+  }
+  
+  .container {
+    padding: 0;
+  }
+  
+  .welcome-card,
+  .login-container,
+  .card {
+    padding: var(--spacing-xxl) var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .button-group {
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+  
+  .btn {
+    width: 100%;
+  }
+  
+  h1 {
+    font-size: 1.5rem;
+  }
+  
+  h2 {
+    font-size: var(--font-size-lg);
+  }
+  
+  .logo svg {
+    width: 48px;
+    height: 48px;
+  }
+}
+
+/* Tablet - Estilos para tablets (481px - 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .welcome-card,
+  .login-container,
+  .card {
+    max-width: 500px;
+  }
+  
+  .button-group {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  
+  .container {
+    padding: var(--spacing-lg);
+  }
+}
+
+/* Desktop - Estilos para pantallas medianas (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .welcome-card,
+  .login-container,
+  .card {
+    max-width: 480px;
+  }
+  
+  .container {
+    padding: var(--spacing-xl);
+  }
+}
+
+/* Large Desktop - Estilos para pantallas grandes (1025px+) */
+@media (min-width: 1025px) {
+  .welcome-card,
+  .login-container,
+  .card {
+    max-width: 420px;
+  }
+  
+  .container {
+    padding: var(--spacing-xl);
+  }
+  
+  /* Efectos adicionales para pantallas grandes */
+  .welcome-card:hover,
+  .login-container:hover,
+  .card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--box-shadow-lg);
+  }
+}
+
+/* Orientación landscape en móviles */
+@media (max-width: 768px) and (orientation: landscape) {
+  body {
+    min-height: auto;
+    padding: var(--spacing-sm);
+  }
+  
+  .container {
+    justify-content: flex-start;
+    padding-top: var(--spacing-lg);
+  }
+  
+  .welcome-card,
+  .login-container,
+  .card {
+    margin-bottom: var(--spacing-sm);
+  }
+  
+  footer {
+    margin-top: var(--spacing-lg);
+  }
+}
+
+/* Estilos para pantallas de alta densidad */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .logo svg,
+  .icon {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
+
+/* Reducir animaciones para usuarios que prefieren menos movimiento */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .welcome-card:hover,
+  .login-container:hover,
+  .card:hover,
+  .btn:hover {
+    transform: none;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background-color: #1a1a1a;
+    --card-bg: #2d2d2d;
+    --text-color: #ffffff;
+    --text-muted: #b3b3b3;
+    --input-bg: #3a3a3a;
+    --border-color: #404040;
+  }
+  
+  .welcome-card,
+  .login-container,
+  .card {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  }
+}

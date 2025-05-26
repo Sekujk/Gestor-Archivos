@@ -1,0 +1,104 @@
+/* ===== MODALES ===== */
+
+/* Modal overlay */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--overlay-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transition-base);
+  z-index: 1000;
+}
+
+.modal.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Modal content */
+.modal-content {
+  background-color: var(--card-bg);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--box-shadow-lg);
+  padding: var(--spacing-xxl);
+  width: 90%;
+  max-width: 400px;
+  position: relative;
+  transform: translateY(20px);
+  transition: transform var(--transition-base);
+}
+
+.modal.show .modal-content {
+  transform: translateY(0);
+}
+
+/* Modal overlay clickable */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
+}
+
+/* Botón cerrar */
+.close {
+  position: absolute;
+  top: var(--spacing-md);
+  right: var(--spacing-md);
+  font-size: 24px;
+  font-weight: var(--font-weight-bold);
+  color: var(--text-light);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color var(--transition-fast);
+}
+
+.close:hover {
+  color: var(--text-color);
+}
+
+/* Modal header */
+.modal h2 {
+  margin-bottom: var(--spacing-md);
+  color: var(--text-color);
+}
+
+.modal p {
+  margin-bottom: var(--spacing-xl);
+  color: var(--text-light);
+}
+
+.modal form {
+  margin-top: var(--spacing-xl);
+}
+
+/* Modal específico para reset de email */
+#resetEmail {
+  margin-bottom: var(--spacing-xl);
+}
+
+/* Mensaje de éxito */
+.success-message {
+  padding: var(--spacing-md);
+  background-color: rgba(40, 167, 69, 0.1);
+  border-left: 4px solid var(--success-color);
+  color: #155724;
+  border-radius: var(--border-radius);
+  margin-top: var(--spacing-xl);
+}

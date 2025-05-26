@@ -1,0 +1,89 @@
+/* ===== COMPONENTES ===== */
+
+/* Cards */
+.welcome-card,
+.login-container,
+.card {
+  background-color: var(--card-bg);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--box-shadow);
+  width: 100%;
+  max-width: 420px;
+  padding: var(--spacing-xxxl) var(--spacing-xxl);
+  text-align: center;
+  margin-bottom: var(--spacing-lg);
+  transition: transform var(--transition-base);
+}
+
+.welcome-card:hover,
+.login-container:hover,
+.card:hover {
+  transform: translateY(-5px);
+}
+
+/* Logo */
+.logo {
+  margin-bottom: var(--spacing-lg);
+  color: var(--primary-color);
+}
+
+/* Texto de bienvenida */
+.welcome-text {
+  color: var(--text-muted);
+  margin-bottom: var(--spacing-xxl);
+  font-size: var(--font-size-base);
+}
+
+/* Footer */
+footer {
+  margin-top: var(--spacing-xxxl);
+  color: var(--text-muted);
+  font-size: var(--font-size-xs);
+  text-align: center;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.welcome-card,
+.login-container,
+.fade-in {
+  animation: fadeIn var(--transition-slow) ease-out forwards;
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.slide-in-up {
+  animation: slideInUp var(--transition-base) ease-out forwards;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.pulse {
+  animation: pulse 2s infinite;
+}

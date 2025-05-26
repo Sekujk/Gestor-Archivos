@@ -1,0 +1,251 @@
+/* ===== UTILIDADES Y ANIMACIONES ===== */
+
+/* Spinner para botones */
+.spinner-small {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: #fff;
+  animation: spin 0.8s linear infinite;
+  margin-right: var(--spacing-xs);
+  vertical-align: middle;
+}
+
+/* Animaciones */
+@keyframes spin {
+  to { 
+    transform: rotate(360deg); 
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Clases de utilidad para animaciones */
+.fade-in {
+  animation: fadeIn 0.5s ease;
+}
+
+.slide-in-up {
+  animation: slideInUp 0.3s ease;
+}
+
+.slide-in-down {
+  animation: slideInDown 0.3s ease;
+}
+
+.pulse {
+  animation: pulse 2s infinite;
+}
+
+/* Utilidades de display */
+.d-none {
+  display: none !important;
+}
+
+.d-block {
+  display: block !important;
+}
+
+.d-flex {
+  display: flex !important;
+}
+
+.d-inline {
+  display: inline !important;
+}
+
+.d-inline-block {
+  display: inline-block !important;
+}
+
+/* Utilidades de texto */
+.text-center {
+  text-align: center !important;
+}
+
+.text-left {
+  text-align: left !important;
+}
+
+.text-right {
+  text-align: right !important;
+}
+
+.font-weight-bold {
+  font-weight: var(--font-weight-bold) !important;
+}
+
+.font-weight-normal {
+  font-weight: var(--font-weight-normal) !important;
+}
+
+.text-muted {
+  color: var(--text-muted) !important;
+}
+
+.text-primary {
+  color: var(--primary-color) !important;
+}
+
+.text-success {
+  color: var(--success-color) !important;
+}
+
+.text-danger {
+  color: var(--danger-color) !important;
+}
+
+.text-warning {
+  color: var(--warning-color) !important;
+}
+
+.text-info {
+  color: var(--info-color) !important;
+}
+
+/* Utilidades de spacing */
+.m-0 { margin: 0 !important; }
+.mt-1 { margin-top: var(--spacing-xs) !important; }
+.mb-1 { margin-bottom: var(--spacing-xs) !important; }
+.mt-2 { margin-top: var(--spacing-sm) !important; }
+.mb-2 { margin-bottom: var(--spacing-sm) !important; }
+.mt-3 { margin-top: var(--spacing-md) !important; }
+.mb-3 { margin-bottom: var(--spacing-md) !important; }
+.mt-4 { margin-top: var(--spacing-lg) !important; }
+.mb-4 { margin-bottom: var(--spacing-lg) !important; }
+
+.p-0 { padding: 0 !important; }
+.p-1 { padding: var(--spacing-xs) !important; }
+.p-2 { padding: var(--spacing-sm) !important; }
+.p-3 { padding: var(--spacing-md) !important; }
+.p-4 { padding: var(--spacing-lg) !important; }
+
+/* Utilidades de flexbox */
+.justify-center {
+  justify-content: center !important;
+}
+
+.justify-between {
+  justify-content: space-between !important;
+}
+
+.justify-around {
+  justify-content: space-around !important;
+}
+
+.align-center {
+  align-items: center !important;
+}
+
+.align-start {
+  align-items: flex-start !important;
+}
+
+.align-end {
+  align-items: flex-end !important;
+}
+
+.flex-column {
+  flex-direction: column !important;
+}
+
+.flex-row {
+  flex-direction: row !important;
+}
+
+.flex-wrap {
+  flex-wrap: wrap !important;
+}
+
+.flex-1 {
+  flex: 1 !important;
+}
+
+/* Utilidades de width */
+.w-100 {
+  width: 100% !important;
+}
+
+.w-75 {
+  width: 75% !important;
+}
+
+.w-50 {
+  width: 50% !important;
+}
+
+.w-25 {
+  width: 25% !important;
+}
+
+/* Utilidades de border-radius */
+.rounded {
+  border-radius: var(--border-radius) !important;
+}
+
+.rounded-lg {
+  border-radius: var(--border-radius-lg) !important;
+}
+
+.rounded-full {
+  border-radius: 50% !important;
+}
+
+/* Utilidades de box-shadow */
+.shadow {
+  box-shadow: var(--box-shadow) !important;
+}
+
+.shadow-sm {
+  box-shadow: var(--box-shadow-sm) !important;
+}
+
+.shadow-lg {
+  box-shadow: var(--box-shadow-lg) !important;
+}
+
+.shadow-none {
+  box-shadow: none !important;
+}

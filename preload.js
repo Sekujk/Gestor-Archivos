@@ -37,5 +37,14 @@ contextBridge.exposeInMainWorld('electronAPI', {
   readDirectory: (dirPath) => ipcRenderer.invoke('read-directory', dirPath),
   
   // Credenciales Supabase
-  getSupabaseCredentials: () => ipcRenderer.invoke('get-supabase-credentials')
+  getSupabaseCredentials: () => ipcRenderer.invoke('get-supabase-credentials'),
+  
+  // NUEVAS FUNCIONES PARA LA BANDEJA DEL SISTEMA
+  // Control de ventana
+  showWindow: () => ipcRenderer.invoke('show-window'),
+  hideWindow: () => ipcRenderer.invoke('hide-window'),
+  
+  // Control de inicio automático
+  toggleStartup: (enable) => ipcRenderer.invoke('toggle-startup', enable),
+  getStartupStatus: () => ipcRenderer.invoke('get-startup-status')
 });

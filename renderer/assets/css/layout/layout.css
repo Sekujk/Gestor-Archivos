@@ -1,0 +1,134 @@
+/* ===== LAYOUT ===== */
+
+/* Patrón de fondo - Opciones disponibles */
+
+/* Opción 1: Patrón de puntos sutiles */
+body {
+  background-image: radial-gradient(circle at 20px 20px, rgba(74, 107, 223, 0.05) 2px, transparent 2px);
+  background-size: 40px 40px;
+  background-repeat: repeat;
+}
+
+/* Opción 2: Gradiente sutil (comentado)
+body {
+  background: linear-gradient(135deg, var(--background-color) 0%, rgba(74, 107, 223, 0.03) 100%);
+}
+*/
+
+/* Opción 3: Fondo sólido (comentado)
+body {
+  background-color: var(--background-color);
+}
+*/
+
+/* Opción 4: Patrón original de picos (comentado)
+body {
+  background-image: 
+    linear-gradient(135deg, rgba(74, 107, 223, 0.05) 25%, transparent 25%),
+    linear-gradient(225deg, rgba(74, 107, 223, 0.05) 25%, transparent 25%),
+    linear-gradient(45deg, rgba(74, 107, 223, 0.05) 25%, transparent 25%),
+    linear-gradient(315deg, rgba(74, 107, 223, 0.05) 25%, var(--background-color) 25%);
+  background-position: 40px 0, 40px 0, 0 0, 0 0;
+  background-size: 80px 80px;
+  background-repeat: repeat;
+}
+*/
+
+/* Grid system básico */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: calc(var(--spacing-md) * -0.5);
+  margin-right: calc(var(--spacing-md) * -0.5);
+}
+
+.col {
+  flex: 1;
+  padding-left: calc(var(--spacing-md) * 0.5);
+  padding-right: calc(var(--spacing-md) * 0.5);
+}
+
+.col-12 { flex: 0 0 100%; max-width: 100%; }
+.col-11 { flex: 0 0 91.666%; max-width: 91.666%; }
+.col-10 { flex: 0 0 83.333%; max-width: 83.333%; }
+.col-9 { flex: 0 0 75%; max-width: 75%; }
+.col-8 { flex: 0 0 66.666%; max-width: 66.666%; }
+.col-7 { flex: 0 0 58.333%; max-width: 58.333%; }
+.col-6 { flex: 0 0 50%; max-width: 50%; }
+.col-5 { flex: 0 0 41.666%; max-width: 41.666%; }
+.col-4 { flex: 0 0 33.333%; max-width: 33.333%; }
+.col-3 { flex: 0 0 25%; max-width: 25%; }
+.col-2 { flex: 0 0 16.666%; max-width: 16.666%; }
+.col-1 { flex: 0 0 8.333%; max-width: 8.333%; }
+
+/* Layout helpers */
+.full-height {
+  min-height: 100vh;
+}
+
+.center-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.vertical-center {
+  display: flex;
+  align-items: center;
+}
+
+.horizontal-center {
+  display: flex;
+  justify-content: center;
+}
+
+/* Espaciado entre elementos */
+.space-y > * + * {
+  margin-top: var(--spacing-md);
+}
+
+.space-y-sm > * + * {
+  margin-top: var(--spacing-sm);
+}
+
+.space-y-lg > * + * {
+  margin-top: var(--spacing-lg);
+}
+
+.space-x > * + * {
+  margin-left: var(--spacing-md);
+}
+
+.space-x-sm > * + * {
+  margin-left: var(--spacing-sm);
+}
+
+.space-x-lg > * + * {
+  margin-left: var(--spacing-lg);
+}
+
+/* Contenedores responsivos */
+.container-sm {
+  max-width: var(--breakpoint-sm);
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+.container-md {
+  max-width: var(--breakpoint-md);
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+.container-lg {
+  max-width: var(--breakpoint-lg);
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+.container-xl {
+  max-width: var(--breakpoint-xl);
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}

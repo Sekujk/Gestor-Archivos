@@ -1,0 +1,71 @@
+/* ===== VARIABLES CSS ===== */
+:root {
+  /* Colores principales */
+  --primary-color: #4a6bdf;
+  --primary-dark: #3957c7;
+  --primary-light: rgba(74, 107, 223, 0.1);
+  --primary-shadow: rgba(74, 107, 223, 0.25);
+  
+  /* Colores secundarios */
+  --secondary-color: #6c757d;
+  --success-color: #28a745;
+  --danger-color: #dc3545;
+  --warning-color: #ffc107;
+  --info-color: #17a2b8;
+  
+  /* Colores de fondo */
+  --background-color: #f5f7fa;
+  --card-bg: #ffffff;
+  --input-bg: #ffffff;
+  --overlay-bg: rgba(0, 0, 0, 0.5);
+  
+  /* Colores de texto */
+  --text-color: #333;
+  --text-light: #aab0b7;
+  --text-muted: var(--secondary-color);
+  
+  /* Bordes */
+  --border-color: #dce1e8;
+  --border-radius: 8px;
+  --border-radius-lg: 12px;
+  
+  /* Sombras */
+  --box-shadow: 0 8px 24px rgba(149, 157, 165, 0.2);
+  --box-shadow-sm: 0 2px 8px rgba(149, 157, 165, 0.15);
+  --box-shadow-lg: 0 12px 32px rgba(149, 157, 165, 0.3);
+  
+  /* Espaciado */
+  --spacing-xs: 6px;
+  --spacing-sm: 12px;
+  --spacing-md: 16px;
+  --spacing-lg: 20px;
+  --spacing-xl: 24px;
+  --spacing-xxl: 30px;
+  --spacing-xxxl: 40px;
+  
+  /* Tipografía */
+  --font-family: 'Roboto', sans-serif;
+  --font-size-xs: 0.8rem;
+  --font-size-sm: 0.9rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.4rem;
+  --font-size-xl: 1.6rem;
+  --font-size-xxl: 1.8rem;
+  
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  
+  /* Transiciones */
+  --transition-fast: 0.2s ease;
+  --transition-base: 0.3s ease;
+  --transition-slow: 0.6s ease;
+  
+  /* Breakpoints */
+  --breakpoint-sm: 480px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1200px;
+}

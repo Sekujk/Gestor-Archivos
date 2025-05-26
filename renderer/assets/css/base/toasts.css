@@ -1,0 +1,119 @@
+/* ===== TOASTS/NOTIFICACIONES ===== */
+
+/* Toast base */
+.toast {
+  position: fixed;
+  top: var(--spacing-lg);
+  right: var(--spacing-lg);
+  max-width: 350px;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  overflow: hidden;
+  transform: translateY(-20px);
+  opacity: 0;
+  transition: all var(--transition-base);
+  z-index: 1000;
+  background-color: var(--card-bg);
+}
+
+.toast.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Toast content */
+.toast-content {
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-sm) var(--spacing-md);
+}
+
+.toast-icon {
+  margin-right: var(--spacing-sm);
+  display: flex;
+  align-items: center;
+}
+
+.toast-message {
+  flex: 1;
+  font-size: var(--font-size-sm);
+  color: var(--text-color);
+}
+
+.toast-close {
+  background: none;
+  border: none;
+  color: var(--text-light);
+  font-size: 20px;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: var(--spacing-xs);
+  padding: 0;
+  transition: color var(--transition-fast);
+}
+
+.toast-close:hover {
+  color: var(--text-color);
+}
+
+/* Barra de progreso */
+.toast-progress {
+  height: 3px;
+  background-color: var(--primary-color);
+  width: 100%;
+}
+
+/* Variantes de toast */
+.toast-success {
+  border-left: 4px solid var(--success-color);
+}
+
+.toast-error {
+  border-left: 4px solid var(--danger-color);
+}
+
+.toast-warning {
+  border-left: 4px solid var(--warning-color);
+}
+
+.toast-info {
+  border-left: 4px solid var(--info-color);
+}
+
+/* Colores de iconos por tipo */
+.toast-success .toast-icon {
+  color: var(--success-color);
+}
+
+.toast-error .toast-icon {
+  color: var(--danger-color);
+}
+
+.toast-warning .toast-icon {
+  color: var(--warning-color);
+}
+
+.toast-info .toast-icon {
+  color: var(--info-color);
+}
+
+/* Colores de progreso por tipo */
+.toast-success .toast-progress {
+  background-color: var(--success-color);
+}
+
+.toast-error .toast-progress {
+  background-color: var(--danger-color);
+}
+
+.toast-warning .toast-progress {
+  background-color: var(--warning-color);
+}
+
+.toast-info .toast-progress {
+  background-color: var(--info-color);
+}

@@ -1,0 +1,62 @@
+/* ===== MI GESTOR DE ARCHIVOS - ESTILOS PRINCIPALES ===== */
+
+/* Importar Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap');
+
+/* Importar módulos CSS */
+@import url('../base/variables.css');
+@import url('../base/base.css');
+@import url('../components.css');
+@import url('../base/buttons.css');
+@import url('../layout/responsive.css');
+
+/* ===== ESTILOS ESPECÍFICOS ADICIONALES ===== */
+
+/* Utilidades adicionales */
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.mb-0 { margin-bottom: 0; }
+.mb-1 { margin-bottom: var(--spacing-xs); }
+.mb-2 { margin-bottom: var(--spacing-sm); }
+.mb-3 { margin-bottom: var(--spacing-md); }
+.mb-4 { margin-bottom: var(--spacing-lg); }
+.mb-5 { margin-bottom: var(--spacing-xl); }
+
+.mt-0 { margin-top: 0; }
+.mt-1 { margin-top: var(--spacing-xs); }
+.mt-2 { margin-top: var(--spacing-sm); }
+.mt-3 { margin-top: var(--spacing-md); }
+.mt-4 { margin-top: var(--spacing-lg); }
+.mt-5 { margin-top: var(--spacing-xl); }
+
+.hidden { display: none; }
+.visible { display: block; }
+
+/* Estados de visibilidad */
+.fade-out {
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+
+.fade-in {
+  opacity: 1;
+  transition: opacity var(--transition-base);
+}
+
+/* Loading spinner */
+.spinner {
+  border: 2px solid var(--border-color);
+  border-top: 2px solid var(--primary-color);
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  animation: spin 1s linear infinite;
+  margin: 0 auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
